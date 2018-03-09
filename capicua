@@ -1,0 +1,153 @@
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+
+
+void cargar(int v[],int n)
+{for(int i=0;i<n;i++)
+    { cout<<"v["<<i<<"]";
+     cin>>v[i];
+     
+    }
+}
+
+
+void mostrar(int v[],int n)
+{for(int i=0;i<n;i++)
+	cout<<v[i]<<" ";
+    
+}
+
+
+int sumaImpares(int v[],int n)
+{
+	if (n==1)
+	{if(v[0]%2==1)
+	 return v[0];
+	else
+		return 0;
+	}
+	else
+	{
+		int s=sumaImpares(v,n-1);
+		if(v[n-1]%2==0)
+			return s;
+		else
+			return s+v[n-1];
+	}
+}
+//verificar si los elementos de un vector estan
+//ordenados de manera descendente
+bool verificar(int v[],int n)
+{ 
+ if(n==1)
+	 return true;
+
+ if(n==2)
+		{ if(v[0]<v[1])
+			 return false;
+		 else
+			 return true;
+	    }
+    
+ 
+ else
+	{ bool x=verificar(v,n-1);
+	 if(x==true)
+		{ if(v[n-1]<v[n-2])
+			 return true;
+		 else
+			 return false;
+	     }
+    }
+}
+//verificar si un valor x,existe entre los elementos
+//en un vector ej:4,7,9,2,5 x=3
+bool existe(int v[],int n,int z)
+{if(n==1)
+  {if(v[0]==z)
+	  return true;
+  else
+	  return false;
+  }
+else 
+	{bool d=existe(v,n,z);
+	if(d==true)
+	{
+		if(v[n-1]==z)
+			return true;
+		else
+			return false;
+	}
+    }
+}
+//dado un vertor de elementos , cambiar sus valores
+//elevando al cuadrado cada uno de sus elementos
+//ej: 2 3 1 5 resultado; 4 9 1 25
+void cuadrado(int v[],int n)
+{
+	if(n==1)
+    v[0]=v[0]*v[0];
+	
+   
+else
+	{cuadrado(v,n-1);
+        v[n-1]=v[n-1]*v[n-1]
+ 
+    }
+}
+
+bool capicua(int v[],int j,int k)
+{int n=k-j+1;
+ if(n==1)
+	 return true;
+ else
+ {
+	 if(n==2)
+	 {
+		 if(v[j]==v[k])
+			 return true;
+		 else
+			 return false;
+	 }
+	 else
+	 {
+		 bool c=capicua(v,j+1,k-1);
+		 if(c&& v[j]==v[k])
+			 return true;
+		 else
+			 return false;
+	 }
+ }
+}
+ 
+
+void main()
+{int n,v[100],x,z,j,k;
+bool t;
+cout<<"ingrene numero";
+
+cin>>n;
+//cout<<"numero a encontrar";
+//cin>>z;
+ cargar(v, n);
+
+//x=sumaImpares(v,n);
+
+//cout<<"respuesta:"<<x;
+// k=verificar(v,n);
+// cout<<k;
+// t=existe( v, n,z);
+// cout<<t;
+// cuadrado( v, n);
+ //mostrar(v,n);
+ j=0;
+ k=n-1;
+ if(capicua(v,j,k))
+	 cout<<"es capicua";
+ else
+	 cout<<" no es capicua";
+ getch();
+}
