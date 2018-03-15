@@ -1,0 +1,197 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+float factorial(int n)
+{float f;
+  if(n==0)
+  return 1;
+  else
+   f=factorial(n-1);
+  return f*n;
+}
+float potencia(int b,int e)
+{float x;
+	if(b==0)
+		return 0;
+	if(e==0)
+		return 1;
+	else
+		 x=potencia(b,e-1);
+		return x*b;
+}
+
+void mostrarvector(int v[],int n)
+{	
+	for(int i=0;i<n;i++)
+     cout<<v[i]<<" ";
+}
+
+//Mostrar la suma de los primeros elementos de
+//la serie: S= -1!/1^2 + 2!/2^2 -3!/3^2 + 4!/4^2…
+float sumaserie(int n)
+{ float s;
+	if(n==1)
+		return -1;
+	else
+		 s=sumaserie(n-1);
+	{
+		if(n%2==0)
+			return s+(factorial(n)/potencia(n,2));
+		else
+			return s-(factorial(n)/potencia(n,2));
+	}
+}
+
+ //Verificar si los dígitos de un número están 
+//ordenados ascendentemente.
+bool ascendente(int n)
+{
+	if(n<10)
+		return true;
+	else
+	{ bool x=ascendente(n/10);
+	   if(x==true)
+	   { if(((n/10)%10)<(n%10))
+	         return true;
+	     else 
+			 return false;
+	   }
+	   
+	}
+}// Eliminar los dígitos pares de un número
+
+void llenar(int v[],int n)
+{ for(int i=0;i<n;i++)
+    { cout<<"v["<<i+1<<"]=";
+     cin>>v[i];
+    }
+}
+void invertir(int x,int y)
+{int aux;
+     aux=x;
+	 x=y;
+	 y=aux;
+}
+
+//Verificar que los elementos de un vector forma un número capicúa
+bool capicua(int v[],int i,int j)
+{int n=j-i+1;
+  if(n==1)
+	  return true;
+  
+  if(n==2)
+         { if(v[0]==v[1])
+			  return true;
+		  else
+			  return false;
+	     }
+  else
+		  { bool x=capicua(v,i+1,j-1);
+	       if(x==true && v[i]==v[j])
+			   return true;
+		   else 
+			   return false;
+	     }
+
+}
+//Rotar los elementos de un vector una casilla a la derecha (Como las manillas del reloj)
+
+//Invertir los elementos de un vector
+float promedio(float s,int n)
+{return s/n;
+}
+
+//promedio
+float suma(int v[],int n)
+{ float x,p,s;
+	if(n==1)
+		return v[0];
+	else
+	    x=suma(v,n-1);
+		return x+v[n-1];
+	     
+}
+ 
+void intercambiar(int v[],int k,int l)
+
+{ int n=l-k+1;
+  if(n==1)
+  cout<<v[0];
+  if(n==2)
+	  invertir(v[0],v[1]);
+  else
+     { intercambiar(v,k+1,l-1);
+	   invertir(v[k],v[l]);
+     }
+   
+}
+float promedio(int s,int n)
+{float p;
+	 p=s/n;
+return p;
+}
+
+    
+//eliminar los digitos pares
+int Edigitospares(int n)
+{ int y;
+	if(n<10)
+	 {if(n%2==0)
+	     return 0;
+	 else
+		 return n;
+	 }
+	else
+		{    
+			int x= Edigitospares(n/10);
+			if((n%10)%2==0)
+				
+				return x;
+			else 
+				//y=multiplicador(n);
+				return (x*10)+ (n%10);
+	    }
+}
+ 
+	      
+
+
+void main()
+{int n,i,j,k,l,w,v[50];
+bool z,t;
+float s,y;
+ cout<<"ingrese un valor: ";
+ cin>>n;
+ //float x=sumaserie(n);
+ //cout<<"la suma de la serie es: "<<x;
+ /*z=ascendente( n);
+ if(z==1)
+	 cout<<"es ascendente";
+ if(z==0)
+     cout<<" no es ascendente";*/
+// llenar( v, n);
+ /*i=0;
+ j=n-1;
+
+ t=capicua(v, i, j);
+ if(t==1)
+	 cout<<"es capicua";
+ if(t==0)
+     cout<<" no es capicua";
+ k=0;
+ l=n-1;
+ intercambiar(v,k,l);
+ mostrarvector(v,n);*/
+// llenar(v, n);
+//s=suma( v, n);
+//y=promedio(s ,n);
+
+//cout<<"promedio"<<y;
+w= Edigitospares(n);
+cout<<w;
+ 
+ getch();
+    
+}
