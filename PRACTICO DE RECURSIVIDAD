@@ -1,0 +1,367 @@
+
+1.	Mostrar la suma de los primeros elementos de la serie: S= -1!/1^2 + 2!/2^2 -3!/3^2 + 4!/4^2…
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+float factorial(int n)
+{float f;
+  if(n==0)
+   return 1;
+  else
+   f=factorial(n-1);
+   return f*n;
+}
+float potencia(int b,int e)
+{float x;
+	if(b==0)
+		return 0;
+	if(e==0)
+		return 1;
+	else
+		x=potencia(b,e-1);
+		return x*b;
+}
+
+float sumaserie(int n)
+{ float s;
+	if(n==1)
+		return -1;
+	else
+		s=sumaserie(n-1);
+	{
+		if(n%2==0)
+			return s+(factorial(n)/potencia(n,2));
+		else
+			return s-(factorial(n)/potencia(n,2));
+	}
+}
+
+void main()
+{int n,v[50];
+
+ cout<<"ingrese un valor: ";
+ cin>>n;
+ float x=sumaserie(n);
+ cout<<"la suma de la serie es: "<<x;
+ getch();
+    
+}
+
+
+
+
+
+2.	Verificar si los dígitos de un número están ordenados ascendentemente.
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+bool ascendente(int n)
+{
+	if(n<10)
+		return true;
+	else
+	{ bool x=ascendente(n/10);
+	   if(x==true)
+	   { if(((n/10)%10)<(n%10))
+	         return true;
+	     else 
+			 return false;
+	   }
+	   
+	}
+}
+void main()
+{int n,v[50];
+ bool z;
+ cout<<"ingrese un valor: ";
+ cin>>n;
+ z=ascendente( n);
+ if(z==1)
+ cout<<"es ascendente";
+ if(z==0)
+ cout<<" no es ascendente";
+ getch();
+     
+}
+
+
+
+
+3.	Eliminar los dígitos pares de un número
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+int Edigitospares(int n)
+{ int y;
+	if(n<10)
+	 {if(n%2==0)
+	     return 0;
+	 else
+		 return n;
+	 }
+	else
+		{    
+			int x= Edigitospares(n/10);
+			if((n%10)%2==0)
+				
+				return x;
+			else 
+				
+				return (x*10)+ (n%10);
+	    }
+}
+void main()
+{int nw,v[50];
+ float s,y;
+ cout<<"ingrese un valor: ";
+ cin>>n;
+ w= Edigitospares(n);
+ cout<<w;
+ 
+ getch();
+    
+}
+
+
+4.	Verificar que los elementos de un vector forma un número capicúa. 
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+void llenar(int v[],int n)
+{ for(int i=0;i<n;i++)
+    { cout<<"v["<<i+1<<"]=";
+     cin>>v[i];
+    }
+}
+bool capicua(int v[],int i,int j)
+{int n=j-i+1;
+  if(n==1)
+	  return true;
+  
+  if(n==2)
+         { if(v[0]==v[1])
+			  return true;
+		  else
+			  return false;
+	     }
+  else
+		  { bool x=capicua(v,i+1,j-1);
+	       if(x==true && v[i]==v[j])
+			   return true;
+		   else 
+			   return false;
+	     }
+
+}
+void main()
+{int n,i,j,k,l,w,v[50];
+ bool z,t;
+ float s,y;
+ cout<<"ingrese un valor: ";
+ cin>>n;
+ llenar( v, n);
+ i=0;
+ j=n-1;
+
+ t=capicua(v, i, j);
+ if(t==1)
+	 cout<<"es capicua";
+ if(t==0)
+     cout<<" no es capicua";
+ getch();
+    
+}
+
+
+
+
+5.	Rotar los elementos de un vector una casilla a la derecha (Como las manillas del reloj)
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+void llenar(int v[],int n)
+{ int i;
+	for( i=0;i<n;i++)
+		{cout<<"v["<<i+1<<"]=";
+	     cin>>v[i];
+	    }
+}
+void cambio(int v[], int a,int b)
+{   int aux;
+     aux=v[a];
+	 v[a]=v[b];
+	 v[b]=aux;
+}
+
+void reloj(int v[],int n)
+{
+	
+   
+	{ if(n==1)
+	   cambio(v,n-1,n-2); 
+	    
+	 else
+		 reloj(v,n-1);
+         cambio(v,n-2,n-1);
+	}
+}
+
+void main()
+{ int v[50],n;
+
+  
+  cout<<"ingrese el tamaño del vector:";
+  cin>>n;
+  llenar( v,n);
+  reloj(v,n);
+  mostrar(v,n);
+getch();
+}
+
+
+  
+
+6.	Invertir los elementos de un vector
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+void llenar(int v[],int n)
+{ int i;
+	for( i=0;i<n;i++)
+		{cout<<"v["<<i+1<<"]=";
+	     cin>>v[i];
+	    }
+}
+void mostrar(int v[],int n)
+{ int i;
+	for( i=0;i<n;i++)
+		cout<<v[i]<<endl;
+	     
+	    
+}
+void cambio(int v[], int a,int b)
+{   int aux;
+     aux=v[a];
+	 v[a]=v[b];
+	 v[b]=aux;
+}
+void intercambio(int v[],int i,int j)
+{int n=j-i+1;
+ int aux;
+	if(n==0 || n==1)
+		cout<<"no invertible";
+	else
+	{ if(n==2)
+	   
+         cambio(v,i,j);
+		 
+	   
+	    
+	 else
+	{
+		intercambio(v,i+1,j-1);
+         cambio(v,i,j);
+	}
+	}
+	
+}
+
+void main()
+{ int v[50],n,x;
+
+ 
+  cout<<"ingrese el tamaño del vector:";
+  cin>>n;
+  llenar( v,n);
+  int i=0;
+  int j=n-1;
+  intercambio(v,i,j);
+  mostrar(v,n);
+  getch();
+}
+
+
+
+7.	Calcular el promedio de los elementos de un vector
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+
+
+void llenar(int v[],int n)
+{ int i;
+	for( i=0;i<n;i++)
+		{cout<<"v["<<i+1<<"]=";
+	     cin>>v[i];
+	    }
+}
+float promedio(int v[],int n)
+{float s;
+	if(n==1)
+		return v[0];
+	 else
+		 s=promedio(v,n-1);
+		 return ((s*(n-1))+v[n-1])/n;
+}
+void main()
+{ int v[50],n;
+
+  float s;
+  cout<<"ingrese el tamaño del vector:";
+  cin>>n;
+  llenar( v,n);
+  s=promedio( v, n);
+  cout<<"el promedio es:"<<s;
+  getch();
+}
+ 
+
+8. Generar los elementos de la serie Fibonacci en un vector.
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+void mostrar(int v[],int n)
+{ int i;
+	for( i=0;i<n;i++)
+		cout<<v[i]<<endl;
+void fibonacci(int v[],int n)
+
+{
+	if(n==3)
+		v[2]=v[0]+v[1];
+	
+	  else
+		 fibonacci(v,n-1);
+	     v[n-1]=v[n-2]+v[n-3];
+	
+}
+  v[0]=1;
+  v[1]=1;
+ fibonacci( v, n);
+ mostrar(v,n);
+getch();
+}
+
