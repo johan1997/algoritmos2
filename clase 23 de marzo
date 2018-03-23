@@ -1,0 +1,115 @@
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+
+using namespace std;
+
+class fraccion{
+private:
+ int num;
+ int den;
+
+public:
+ fraccion() {
+   num=1;
+   den=1;
+ }
+
+ void setNum(int n)
+ { num=n; }
+ 
+ void setDen(int d)
+ { den=d; }
+
+ int getNum()
+ { return num; }
+
+ int getDen()
+ { return den; }
+
+void leer()
+{
+  int a,b;
+  
+  cout<<"Num:"; cin>>a; 
+  cout<<"Den:"; cin>>b;
+  num=a;
+  den=b;
+}
+
+void mostrar()
+{
+  cout<<num<<"/"<<den<<endl;
+}
+
+ void simplificar(){
+ int c=2;
+  while(c<=num && c<=den)
+  {
+	 if(num % c==0 && den % c==0){
+	   num=num / c;
+	   den=den / c;
+	 }
+	 else
+		c++;
+  }
+ }
+void sumar(fraccion f1,fraccion f2);
+void multiplicar(fraccion f1,fraccion f2);
+void dividir(fraccion f1,fraccion f2);
+
+void multiplicarxescalar(int x);
+}; //fin clase
+void fraccion::sumar(fraccion f1,fraccion f2)
+{  int a=f1.getNum();
+   int b=f1.getDen();
+   int c=f2.getNum();
+   int d=f2.getDen();
+    num= (((d*b)/b)*a)+(((d*b)/d)*c);
+	den= d*b;
+}
+void fraccion::multiplicar(fraccion f1,fraccion f2)
+{   int a=f1.getNum();
+   int b=f1.getDen();
+   int c=f2.getNum();
+   int d=f2.getDen();
+   num=a*c;
+   den=b*d;
+}
+void fraccion::dividir(fraccion f1,fraccion f2)
+{   int a=f1.getNum();
+   int b=f1.getDen();
+   int c=f2.getNum();
+   int d=f2.getDen();
+   num=a*d;
+   den=b*c;
+}
+void fraccion::multiplicarxescalar(int x)
+{   num=getNum()*x;
+    den=getDen();
+}
+int mcm(int x,int y)
+{int k,int i=2,int m;
+
+
+
+
+
+}
+void main()
+{int x,y;
+	fraccion f1,f2,f3;
+	f1.leer();
+	cin>>x;
+	cin>>y;
+	//f2.leer();
+	//f3.sumar(f1,f2);
+	//f3.multiplicar(f1,f2);
+	//f3.dividir(f1,f2);
+	f1.multiplicarxescalar( x);
+	f1.simplificar();
+	f1.mostrar();
+	
+	
+	getche();
+}
